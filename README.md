@@ -1,60 +1,109 @@
 # MOXORA Studio
 
-**Build Beyond Limits** — by MOXBYTE.
+Build Beyond Limits. By MOXBYTE.
 
-MOXORA Studio is planned as a cross-platform software engineering ecosystem. This repository is the starting point for the project; features are only marked complete when implemented and verified.
+MOXORA Studio is a professional software engineering ecosystem for coding, design, AI-assisted workflows, testing, security, cloud delivery, collaboration, and creator tooling. This repository is the curated starting point for the project.
 
-## Current status
+## Current implementation status
 
-- **Repository:** initialized as an empty repository when inspected on 2026-11-04.
-- **Application code, setup, database, and tests:** not yet implemented or verified.
-- **Next step:** establish the JavaScript monorepo foundation and build the first usable web workspace incrementally.
+This repo now contains a practical foundation for the project, not a finished product.
 
-See [the architecture and roadmap](docs/architecture.md) for the modular monolith design, planned folder structure, phased checklist, risks, and explicit feature status.
+Completed in this repository:
+- Monorepo structure for the first web and API layers
+- Architecture and security documentation
+- Initial React + Vite web dashboard shell for MOXORA Core V0.1
+- Initial Node.js/Express API service with health endpoint
+- Prisma schema for core project domains
+- Setup guidance and environment examples
 
-## Product direction
+Planned or not yet implemented:
+- Full authentication and RBAC
+- Real project persistence and file management
+- Monaco editor integration
+- Terminal execution sandbox
+- AI coding assistant
+- Git workflows and branch integration
+- Secure isolated execution environment
+- Desktop and mobile clients
+- Full compiler/language tooling and visual design systems
 
-MOXORA aims to bring together coding, project management, AI-assisted development, language tooling, visual design, testing, security, cloud workflows, collaboration, and a creator ecosystem. The full product is a long-term roadmap, not a feature-complete release.
+## Product vision
 
-### MOXORA Core V0.1 target (not yet implemented)
+The long-term target is the full MOXORA ecosystem described in the roadmap, including:
+- MOXORA Code, Explorer, Terminal, Debugger, Build Engine, Package Manager
+- AI Brain, Agent Council, AI Team, Memory, Voice Studio, Documentation Intelligence
+- Compiler Center, Language Forge, Interpreter Center, Runtime Manager
+- DesignSpace, Visual Builder, Design-to-Code workflows
+- API Studio, Data Architect, Auth Studio, Event Engine
+- Game Studio, AI Model Lab, Hardware Lab
+- Team collaboration, marketplace, academy, analytics, and enterprise readiness
 
-- Responsive project dashboard and authentication
-- Project creation, file explorer, and Monaco editor
-- Terminal and Node.js/Python execution; C/C++ where supported
-- Basic Git integration and AI coding assistance
-- PostgreSQL persistence and automated tests
-
-**Security gate:** untrusted code must run only in an isolated, resource-limited sandbox with restricted networking and filesystem access. Do not execute user code on the API or application host. Until that isolation is implemented and tested, code execution is not available.
-
-## Planned repository structure
+## Repository structure
 
 ```text
-apps/web/                 React web workspace
-apps/desktop/             Electron desktop shell (later phase)
-apps/mobile/              React Native client (later phase)
-services/api/             Node.js/Express modular API
-services/worker/          Queued background jobs (later phase)
-packages/ui/               Shared accessible UI
-packages/contracts/        API and event contracts
-packages/config/           Shared tooling configuration
-infra/                     Local development and deployment definitions
-docs/                      Architecture, security, setup, API, roadmap
+apps/
+  web/
+services/
+  api/
+packages/
+  ui/
+  contracts/
+  config/
+infra/
+  docker/
+prisma/
+  schema.prisma
+docs/
 ```
 
-## Architecture decisions (initial)
+## Core architecture
 
-- JavaScript-first modular monolith; extract execution, collaboration, AI, or deployment services only when security or scale justifies it.
-- PostgreSQL with Prisma for durable domain data; Redis for queues and short-lived coordination; object storage for project assets and snapshots.
-- React, Tailwind CSS, and Monaco for the web workspace; Electron and React Native are later clients.
-- Explicit API contracts, permissions, audit events, resource limits, and human approvals for destructive or high-risk actions.
-- English and Kinyarwanda are initial localization targets; French and Swahili are planned.
+We are starting from a modular monolith:
+- Web application for the user experience
+- Node.js API for project and domain services
+- Prisma/PostgreSQL as the durable source of truth
+- Redis for cache, queueing, and short-lived coordination
+- Object storage for larger assets and snapshots
+- Execution sandboxes separated from the app and API hosts
+
+This keeps the radical product vision manageable while preserving explicit module boundaries and future scalability.
+
+## Security model
+
+All user code must be treated as untrusted. The product must run it only in ephemeral, resource-limited sandboxes with:
+- CPU, RAM, disk, and time restrictions
+- restricted or disabled networking by default
+- limited filesystem access
+- no host credentials or secrets exposure
+- mandatory approvals for destructive or sensitive actions
+
+Until those controls are implemented as a tested system, code execution is intentionally left as an explicit future phase.
+
+## Quick start
+
+1. Copy `.env.example` to `.env` and adjust values.
+2. Install workspace dependencies:
+   
+   ```bash
+   npm install
+   ```
+3. Start the web app:
+   
+   ```bash
+   npm run dev --workspace apps/web
+   ```
+4. Start the API:
+   
+   ```bash
+   npm run dev --workspace services/api
+   ```
 
 ## Documentation
 
-- [Architecture, plan, and status](docs/architecture.md)
-- [Security model and execution gate](docs/security.md)
+- [Architecture](docs/architecture.md)
+- [Security model](docs/security.md)
 - [Roadmap and backlog](docs/roadmap.md)
 
-## License
+## Notes
 
-No license has been selected. Do not assume this repository grants permission to use, modify, or redistribute its contents. MOXBYTE should select and add an appropriate license before public distribution or commercial contributions.
+This project is intentionally honest about scope: it is a foundation for MOXORA Core V0.1, with the product roadmap continuing toward the complete ecosystem described in the documentation.

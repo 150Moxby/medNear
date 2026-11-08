@@ -1,0 +1,16 @@
+{
+  "name": "moxora-studio",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/*",
+    "services/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace apps/web",
+    "build": "npm run build --workspace apps/web",
+    "lint": "echo 'Add ESLint configuration for the full monorepo in a later phase.' && exit 0",
+    "test": "echo 'No automated test suite is configured yet for the monorepo foundation.' && exit 0"
+  }
+}
