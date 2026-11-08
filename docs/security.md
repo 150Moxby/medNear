@@ -2,22 +2,17 @@
 
 ## Principle
 
-Treat every project, uploaded asset, and generated source file as untrusted input.
+All user code and uploaded content must be treated as untrusted input.
 
-## Mandatory controls
+## Required controls
 
-- Run user code only in isolated, ephemeral sandboxes.
-- Apply CPU, memory, disk, and time limits.
-- Restrict or disable networking by default.
-- Sandboxes must not have access to host secrets, credentials, or production data.
-- All sensitive data must be encrypted in transit and at rest.
-- Use RBAC and project-level permissions for code and deployment access.
-- Require human approval for dangerous actions such as destructive deletes, production deployment, secret access, and high-risk agent actions.
-
-## Execution boundary
-
-The application should submit code execution requests to a dedicated worker or sandbox service rather than running directly inside the web or API process. The sandbox service should isolate runtime state, resource limits, and output capture.
+- Run untrusted code only in isolated, ephemeral sandboxes
+- Enforce CPU, memory, disk, and time limits
+- Restrict networking by default
+- Prevent access to host credentials, secrets, or production data
+- Require approvals for destructive or production-impacting operations
+- Keep audit trails for critical actions
 
 ## Current status
 
-This repo includes the architectural requirement and documentation for the execution gate. The actual runtime sandbox implementation is a planned future milestone and must not be described as complete until it is implemented and verified.
+The architecture documents these rules, and the first implementation phase provides the project skeleton. The actual execution sandbox implementation is still a future milestone.

@@ -15,7 +15,7 @@ const projects = [
 const activity = [
   'Authentication shell prepared for MFA and RBAC upgrades.',
   'Project creation flow documented for Phase 1 implementation.',
-  'Execution sandbox boundary requirement added to security model.',
+  'Execution sandbox boundary requirement added to the security model.',
   'Monorepo foundation and workspace structure initialized.'
 ];
 

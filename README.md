@@ -1,42 +1,28 @@
 # MOXORA Studio
 
-Build Beyond Limits. By MOXBYTE.
+Build Beyond Limits.
 
-MOXORA Studio is a professional software engineering ecosystem for coding, design, AI-assisted workflows, testing, security, cloud delivery, collaboration, and creator tooling. This repository is the curated starting point for the project.
+MOXORA Studio is a professional, AI-powered engineering platform and ecosystem for product teams, software engineers, designers, QA, security engineers, cloud operators, and creators.
 
-## Current implementation status
+## Current status
 
-This repo now contains a practical foundation for the project, not a finished product.
+This repository now contains the initial project foundation for MOXORA Core V0.1. The work is intentionally honest about scope:
 
-Completed in this repository:
-- Monorepo structure for the first web and API layers
-- Architecture and security documentation
-- Initial React + Vite web dashboard shell for MOXORA Core V0.1
-- Initial Node.js/Express API service with health endpoint
-- Prisma schema for core project domains
-- Setup guidance and environment examples
-
-Planned or not yet implemented:
-- Full authentication and RBAC
-- Real project persistence and file management
-- Monaco editor integration
-- Terminal execution sandbox
-- AI coding assistant
-- Git workflows and branch integration
-- Secure isolated execution environment
-- Desktop and mobile clients
-- Full compiler/language tooling and visual design systems
+- Completed: monorepo structure, initial architecture documents, dashboard shell, API health endpoint, Prisma schema foundation, environment setup examples
+- In progress: Phase 1 workspace shell, project architecture, and secure execution planning
+- Planned: authentication, editor, project persistence, AI assistant, compiler tooling, security automation, cloud deployment, collaboration, mobile, marketplace, and full product platform modules
 
 ## Product vision
 
-The long-term target is the full MOXORA ecosystem described in the roadmap, including:
-- MOXORA Code, Explorer, Terminal, Debugger, Build Engine, Package Manager
-- AI Brain, Agent Council, AI Team, Memory, Voice Studio, Documentation Intelligence
-- Compiler Center, Language Forge, Interpreter Center, Runtime Manager
-- DesignSpace, Visual Builder, Design-to-Code workflows
-- API Studio, Data Architect, Auth Studio, Event Engine
-- Game Studio, AI Model Lab, Hardware Lab
-- Team collaboration, marketplace, academy, analytics, and enterprise readiness
+MOXORA Studio is designed to unify:
+- developer tooling
+- AI coding agents and project memory
+- design systems and prototype workflows
+- compiler/runtime infrastructure
+- back-end and database tooling
+- testing, security, and reliability automation
+- cloud and deployment operations
+- team collaboration and community marketplace features
 
 ## Repository structure
 
@@ -51,59 +37,39 @@ packages/
   config/
 infra/
   docker/
+docs/
 prisma/
   schema.prisma
-docs/
 ```
 
-## Core architecture
+## Architecture
 
-We are starting from a modular monolith:
-- Web application for the user experience
-- Node.js API for project and domain services
-- Prisma/PostgreSQL as the durable source of truth
-- Redis for cache, queueing, and short-lived coordination
-- Object storage for larger assets and snapshots
-- Execution sandboxes separated from the app and API hosts
+The product is being structured as a modular monolith with a clear future path to isolate high-load execution, AI, collaboration, and deployment services. Early architecture decisions:
+- React + Vite for the web application shell
+- Express + Node.js for API services
+- PostgreSQL + Prisma for durable project and user data
+- Redis for cache and job queues
+- Object storage for large media, snapshots, and project assets
+- execution sandboxes isolated from the app and API hosts
 
-This keeps the radical product vision manageable while preserving explicit module boundaries and future scalability.
+## Security-first note
 
-## Security model
-
-All user code must be treated as untrusted. The product must run it only in ephemeral, resource-limited sandboxes with:
-- CPU, RAM, disk, and time restrictions
-- restricted or disabled networking by default
-- limited filesystem access
-- no host credentials or secrets exposure
-- mandatory approvals for destructive or sensitive actions
-
-Until those controls are implemented as a tested system, code execution is intentionally left as an explicit future phase.
+All user code and uploaded projects must be treated as untrusted. Execution must happen only inside isolated, ephemeral sandboxes with resource and network restrictions, no host secret exposure, and approvals for high-risk actions.
 
 ## Quick start
 
-1. Copy `.env.example` to `.env` and adjust values.
-2. Install workspace dependencies:
-   
-   ```bash
-   npm install
-   ```
-3. Start the web app:
-   
-   ```bash
-   npm run dev --workspace apps/web
-   ```
-4. Start the API:
-   
-   ```bash
-   npm run dev --workspace services/api
-   ```
+```bash
+npm install
+npm run dev --workspace apps/web
+npm run dev --workspace services/api
+```
 
 ## Documentation
 
 - [Architecture](docs/architecture.md)
 - [Security model](docs/security.md)
-- [Roadmap and backlog](docs/roadmap.md)
+- [Roadmap](docs/roadmap.md)
 
-## Notes
+## Current implementation summary
 
-This project is intentionally honest about scope: it is a foundation for MOXORA Core V0.1, with the product roadmap continuing toward the complete ecosystem described in the documentation.
+The repository is intentionally a real starting point, not a mockup or a fake "finished" platform. It contains a working foundation for the product to grow toward the complete ecosystem described in the roadmap.
